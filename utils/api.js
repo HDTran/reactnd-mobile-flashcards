@@ -3,11 +3,30 @@ import { AsyncStorage } from 'react-native';
 const FLASHCARD_STORAGE_KEY = 'flashcards:decks';
 
 export function getDecks () {
-  return JSON.parse(AsyncStorage.getItem(FLASHCARD_STORAGE_KEY));
+  AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+    .then((data) => {
+      if(data !== null) {
+        return JSON.parse(data);
+      }
+      else {
+        return {};
+      }
+    });
 }
 
 export function getDeck (title) {
-  return JSON.parse(AsyncStorage.getItem(FLASHCARD_STORAGE_KEY))[title];
+  AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+    .then((data) => {
+      if(data !== null) {
+        data = JSON.parse(data);
+        if(data[title] !== undefined) {
+          return data[title];
+        }
+      }
+      else {
+        return null;
+      }
+    });
 }
 
 export function saveDeckTitle (title) {
