@@ -2,14 +2,14 @@ export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 export const ADD_DECK = 'ADD_DECK';
 export const ADD_QUESTION = 'ADD_QUESTION';
 
-export function receiveEntries (decks) {
+export function receiveDecks (decks) {
   return {
     type: RECEIVE_DECKS,
     decks
   };
 }
 
-export function addEntry (title) {
+export function addDeck (title) {
   return {
     type: ADD_DECK,
     title

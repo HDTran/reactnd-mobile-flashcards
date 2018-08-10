@@ -3,19 +3,24 @@ import { AsyncStorage } from 'react-native';
 const FLASHCARD_STORAGE_KEY = 'flashcards:decks';
 
 export function getDecks () {
-  AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then((data) => {
-      if(data !== null) {
+      if(data !== null && data !== undefined) {
         return JSON.parse(data);
       }
       else {
-        return {};
+        return {
+          'Starter Deck': {
+            title: 'Starter Deck',
+            questions: []
+          }
+        };
       }
     });
 }
 
 export function getDeck (title) {
-  AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then((data) => {
       if(data !== null) {
         data = JSON.parse(data);
@@ -30,15 +35,12 @@ export function getDeck (title) {
 }
 
 export function saveDeckTitle (title) {
-  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
-  .then((results) => {
-    const data = JSON.parse(results);
-    data[title] = {
+  AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify({
+    [title]: {
       title: `${title}`,
       questions: []
-    };
-    AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(data));
-  });
+    }
+  }));
 }
 
 export function addCardToDeck (title, card) {

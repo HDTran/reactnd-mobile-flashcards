@@ -4,6 +4,9 @@ import { createBottomTabNavigator, createStackNavigator } from 'react-navigation
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import { PRIMARY, PRIMARY_DARK, BACKGROUND, SECONDARY, ON_PRIMARY } from './utils/colors';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckDetail from './components/DeckDetail';
@@ -46,7 +49,7 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      title: 'Home'
+      title: 'Decks'
     }
   },
   DeckDetail: {
@@ -62,12 +65,14 @@ const MainNavigator = createStackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View style={{ backgroundColor: 'black', height: Constants.statusBarHeight }}>
-          <StatusBar translucent barStyle='light-content' />
+      <Provider store={createStore(reducer)}>
+        <View style={{flex: 1}}>
+          <View style={{ backgroundColor: 'black', height: Constants.statusBarHeight }}>
+            <StatusBar translucent barStyle='light-content' />
+          </View>
+          <MainNavigator />
         </View>
-        <MainNavigator />
-      </View>
+      </Provider>
     );
   }
 }
