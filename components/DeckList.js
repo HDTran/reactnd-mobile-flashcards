@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
 import { getDecks } from '../utils/api';
+import DeckListItem from '../components/DeckListItem';
 
 class DeckList extends Component {
   componentDidMount() {
@@ -14,22 +15,22 @@ class DeckList extends Component {
     const { decks } = this.props;
 
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         {Object.values(decks).length > 0 && Object.values(decks).map((deck) => (
-          <Text key={deck.title}>{deck.title}. {deck.questions.length} cards.</Text>
+          <DeckListItem key={deck.title} title={deck.title} questions={deck.questions} navigate={() => this.props.navigation.navigate('DeckDetail', { title: deck.title })} />
         ))}
         {Object.values(decks).length === 0 && (
           <Text>You currently have no decks to view. Please add a deck.</Text>
         )}
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // backgroundColor: '#FFF',
+    flex: 1,
+    backgroundColor: '#FFF',
     padding: 15
   }
 });

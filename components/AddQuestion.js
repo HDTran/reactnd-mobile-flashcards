@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-class AddCard extends Component {
+class AddQuestion extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>AddCard</Text>
+        <Text>AddQuestion</Text>
       </View>
     );
   }
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AddCard;
+export default AddQuestion;

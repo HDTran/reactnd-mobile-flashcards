@@ -11,6 +11,7 @@ import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckDetail from './components/DeckDetail';
 import Quiz from './components/Quiz';
+import AddQuestion from './components/AddQuestion';
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -49,7 +50,7 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: Tabs,
     navigationOptions: {
-      title: 'Decks'
+      header: null
     }
   },
   DeckDetail: {
@@ -57,6 +58,9 @@ const MainNavigator = createStackNavigator({
   },
   Quiz: {
     screen: Quiz
+  },
+  AddQuestion: {
+    screen: AddQuestion
   }
 }, {
   initialRouteName: 'Home'

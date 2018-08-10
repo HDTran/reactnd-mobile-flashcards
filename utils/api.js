@@ -34,8 +34,8 @@ export function getDeck (title) {
     });
 }
 
-export function saveDeckTitle (title) {
-  AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify({
+export function saveDeck (title) {
+  return AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY, JSON.stringify({
     [title]: {
       title: `${title}`,
       questions: []
@@ -43,7 +43,7 @@ export function saveDeckTitle (title) {
   }));
 }
 
-export function addCardToDeck (title, card) {
+export function saveCardToDeck (title, card) {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then((results) => {
       const data = JSON.parse(results);
