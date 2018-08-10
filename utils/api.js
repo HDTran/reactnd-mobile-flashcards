@@ -43,13 +43,13 @@ export function saveDeck (title) {
   }));
 }
 
-export function saveCardToDeck (title, card) {
+export function saveCardToDeck (title, question, answer) {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
     .then((results) => {
       const data = JSON.parse(results);
       data[title].questions.push({
-        question: card.question,
-        answer: card.answer
+        question,
+        answer
       });
       AsyncStorage.setItem(FLASHCARD_STORAGE_KEY, JSON.stringify(data));
     });

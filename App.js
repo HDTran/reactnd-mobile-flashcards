@@ -11,7 +11,7 @@ import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckDetail from './components/DeckDetail';
 import Quiz from './components/Quiz';
-import AddQuestion from './components/AddQuestion';
+import AddCard from './components/AddCard';
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -59,8 +59,8 @@ const MainNavigator = createStackNavigator({
   Quiz: {
     screen: Quiz
   },
-  AddQuestion: {
-    screen: AddQuestion
+  AddCard: {
+    screen: AddCard
   }
 }, {
   initialRouteName: 'Home'

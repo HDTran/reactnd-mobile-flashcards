@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { PRIMARY_DARK, ON_PRIMARY } from '../utils/colors';
 import { addDeck } from '../actions';
@@ -26,7 +26,7 @@ class AddDeck extends Component {
   }
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <View style={{ maxWidth: 400 }}>
           <Text style={styles.header}>What is the title of your new deck?</Text>
           <TextInput style={styles.textInput} onChangeText={(text) => this.setState({text})} value={this.state.text} />
@@ -34,7 +34,7 @@ class AddDeck extends Component {
             <Text style={styles.buttonText}>Submit</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
