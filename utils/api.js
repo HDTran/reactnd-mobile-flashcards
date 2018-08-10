@@ -9,12 +9,7 @@ export function getDecks () {
         return JSON.parse(data);
       }
       else {
-        return {
-          'Starter Deck': {
-            title: 'Starter Deck',
-            questions: []
-          }
-        };
+        return {};
       }
     });
 }
