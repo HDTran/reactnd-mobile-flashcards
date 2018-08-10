@@ -31,7 +31,7 @@ class AddDeck extends Component {
           <Text style={styles.header}>What is the title of your new deck?</Text>
           <TextInput style={styles.textInput} onChangeText={(text) => this.setState({text})} value={this.state.text} />
           <TouchableOpacity style={styles.button} onPress={this.handleAddDeck}>
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>Create Deck</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>

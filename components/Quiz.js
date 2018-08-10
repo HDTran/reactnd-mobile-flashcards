@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { PRIMARY_LIGHT, PRIMARY_DARK, ON_PRIMARY, SECONDARY, ON_SECONDARY } from '../utils/colors';
+import { PRIMARY_LIGHT, PRIMARY_DARK, ON_PRIMARY } from '../utils/colors';
+import { NavigationActions } from 'react-navigation';
+import { clearLocalNotification, setLocalNotification} from '../utils/helpers';
 
 class Quiz extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -42,6 +44,10 @@ class Quiz extends Component {
       showResults: activeIndex === -1 ? true: false,
       score: ((questions.filter((question) => (question.correct)).length/questions.length)*100).toFixed(2)
     }));
+
+    if(activeIndex === -1) {
+      clearLocalNotification().then(setLocalNotification);
+    }
   }
   resetQuiz() {
     this.setState((state) => ({
@@ -74,6 +80,9 @@ class Quiz extends Component {
                     <Text style={styles.header}>You've completed the quiz with a score of {score}%!</Text>
                     <TouchableOpacity style={styles.buttonReset} onPress={() => this.resetQuiz()}>
                       <Text style={styles.buttonResetText}>Reset Quiz</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonBack} onPress={() => { this.props.navigation.dispatch(NavigationActions.back({ key: null })); }}>
+                      <Text style={styles.buttonBackText}>Back to Deck</Text>
                     </TouchableOpacity>
                   </View>
                 )}
@@ -162,6 +171,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     color: ON_PRIMARY
+  },
+  buttonBack: {
+    margin: 5,
+    borderRadius: 5,
+    padding: 10
+  },
+  buttonBackText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: PRIMARY_LIGHT
   },
 });
 

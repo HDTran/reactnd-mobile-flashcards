@@ -12,6 +12,7 @@ import AddDeck from './components/AddDeck';
 import DeckDetail from './components/DeckDetail';
 import Quiz from './components/Quiz';
 import AddCard from './components/AddCard';
+import { setLocalNotification } from './utils/helpers';
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -67,6 +68,9 @@ const MainNavigator = createStackNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
       <Provider store={createStore(reducer)}>

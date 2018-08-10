@@ -17,13 +17,15 @@ class DeckDetail extends Component {
       <View style={styles.container}>
         <View style={{ maxWidth: 400 }}>
           <Text style={styles.header}>{title}</Text>
-          <Text style={styles.questionCount}>{questions.length} questions.</Text>
+          <Text style={styles.questionCount}>{questions.length} cards.</Text>
           <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('AddCard', { title })}>
-            <Text style={styles.buttonText}>Add Question</Text>
+            <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonQuiz} onPress={() => this.props.navigation.navigate('Quiz', { title, questions })}>
-            <Text style={styles.buttonQuizText}>Start Quiz</Text>
-          </TouchableOpacity>
+          {questions.length > 0 && (
+            <TouchableOpacity style={styles.buttonQuiz} onPress={() => this.props.navigation.navigate('Quiz', { title, questions })}>
+              <Text style={styles.buttonQuizText}>Start Quiz</Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     );

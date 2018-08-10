@@ -40,7 +40,7 @@ class AddCard extends Component {
           <TextInput style={styles.textInput} placeholder={`Question`} onChangeText={(questionText) => this.setState({questionText})} value={this.state.questionText} />
           <TextInput style={styles.textInput} placeholder={`Answer`} onChangeText={(answerText) => this.setState({answerText})} value={this.state.answerText} />
           <TouchableOpacity style={styles.button} onPress={this.handleAddCard}>
-            <Text style={styles.buttonText}>Submit</Text>
+            <Text style={styles.buttonText}>Add Card</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
